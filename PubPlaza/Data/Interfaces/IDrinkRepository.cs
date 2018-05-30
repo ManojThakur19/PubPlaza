@@ -12,6 +12,5 @@ namespace PubPlaza.Data.Interfaces
         IEnumerable<Drink> PrefferedDrinks { get; set; }
         Drink GetSingleDrink(int DrinkId);
 
-
     }
 }

@@ -9,6 +9,5 @@ namespace PubPlaza.Data.Interfaces
     public interface ICategoryRepository
     {
         IEnumerable<Category> Categories { get; set; }
-
     }
 }

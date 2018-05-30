@@ -10,6 +10,5 @@ namespace PubPlaza.Data.Mocks
     public class MockCategoryRepository : ICategoryRepository
     {
         public IEnumerable<Category> Categories { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
     }
 }
