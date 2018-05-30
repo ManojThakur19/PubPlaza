@@ -36,9 +36,10 @@ namespace PubPlaza
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            app.UseStatusCodePages();
             app.UseStaticFiles();
-
+            //app.UseMvcWithDefaultRoute();
+            //Below is doing exactly what it is by above commented code
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
