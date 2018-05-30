@@ -15,6 +15,7 @@ namespace PubPlaza.Data.Mocks
         public Drink GetSingleDrink(int DrinkId)
         {
             throw new NotImplementedException();
+
         }
     }
 }

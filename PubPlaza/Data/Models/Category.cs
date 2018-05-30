@@ -11,5 +11,6 @@ namespace PubPlaza.Data.Models
         public string CategoryName { get; set; }
         public string Description { get; set; }
         public List<Drink> Drinks { get; set; }
+
     }
 }
