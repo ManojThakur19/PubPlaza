@@ -8,7 +8,7 @@ namespace PubPlaza.Data.Interfaces
 {
     public interface IDrinkRepository
     {
-        IEnumerable<Drink> AllDrinks { get; set; }
+        IEnumerable<Drink> AllDrinks { get; }
         IEnumerable<Drink> PrefferedDrinks { get; set; }
         Drink GetSingleDrink(int DrinkId);
 

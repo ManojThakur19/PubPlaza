@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div>
+    <h2>All drinks are shown here...</h2>
+</div>
+
+<h2>@Model.CurrentCategory</h2> 
+
+@foreach (var drink in Model.Drinks)
+{
+    <div>
+        <h4>Drink Name:@drink.DrinkName</h4>
+        <p>Price:@drink.Price.ToString("c")</p>
+    </div>
+}
+

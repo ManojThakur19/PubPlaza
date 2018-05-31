@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using PubPlaza.Data.Mocks;
+using PubPlaza.Data.Interfaces;
 
 namespace PubPlaza
 {
@@ -21,6 +23,8 @@ namespace PubPlaza
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<ICategoryRepository, MockCategoryRepository>();   
+            services.AddTransient<IDrinkRepository, MockDrinkRepository>();
             services.AddMvc();
         }
 
