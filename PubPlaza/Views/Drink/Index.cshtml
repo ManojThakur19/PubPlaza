@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 
@@ -11,9 +10,15 @@
 
 @foreach (var drink in Model.Drinks)
 {
-    <div>
-        <h4>Drink Name:@drink.DrinkName</h4>
-        <p>Price:@drink.Price.ToString("c")</p>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="thumbnail">
+            <img src="@Url.Content(@drink.ImageThumbnailUrl)" alt ="" />
+            <div class="caption">
+                <h3 class="pull-right">@drink.Price.ToString("c")</h3>
+                <h3><a>@drink.DrinkName</a></h3>
+            </div>
+            <p>@drink.ShortDescription</p>
+        </div>
     </div>
 }
 

@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PubPlaza.Data.Mocks;
 using PubPlaza.Data.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using PubPlaza.Data;
+using PubPlaza.Data.Repositories;
 
 namespace PubPlaza
 {
@@ -23,8 +26,11 @@ namespace PubPlaza
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<ICategoryRepository, MockCategoryRepository>();   
-            services.AddTransient<IDrinkRepository, MockDrinkRepository>();
+            services.AddDbContext<PubPlazaContext>
+                (options => options.UseSqlServer
+                (Configuration.GetConnectionString("PubPlazaConnection")));
+            services.AddTransient<ICategoryRepository, CategoryRepository>();   
+            services.AddTransient<IDrinkRepository, DrinkRepository>();
             services.AddMvc();
         }
 
