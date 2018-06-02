@@ -11,9 +11,10 @@ using System;
 namespace PubPlaza.Migrations
 {
     [DbContext(typeof(PubPlazaContext))]
-    partial class PubPlazaContextModelSnapshot : ModelSnapshot
+    [Migration("20180602154430_shoppingcartitem")]
+    partial class shoppingcartitem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

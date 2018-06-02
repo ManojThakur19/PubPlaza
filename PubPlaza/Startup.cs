@@ -11,6 +11,8 @@ using PubPlaza.Data.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using PubPlaza.Data;
 using PubPlaza.Data.Repositories;
+using Microsoft.AspNetCore.Http;
+using PubPlaza.Data.Models;
 
 namespace PubPlaza
 {
@@ -31,7 +33,13 @@ namespace PubPlaza
                 (Configuration.GetConnectionString("PubPlazaConnection")));
             services.AddTransient<ICategoryRepository, CategoryRepository>();   
             services.AddTransient<IDrinkRepository, DrinkRepository>();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            //two people  can ask for the instance at the same time will get difffernt instances
+            services.AddScoped(sp => ShoppingCart.GetCart(sp));
             services.AddMvc();
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +56,7 @@ namespace PubPlaza
             }
             app.UseStatusCodePages();
             app.UseStaticFiles();
+            app.UseSession();
             //app.UseMvcWithDefaultRoute();
             //Below is doing exactly what it is by above commented code
             app.UseMvc(routes =>
