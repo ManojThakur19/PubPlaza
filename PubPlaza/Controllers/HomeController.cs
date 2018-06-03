@@ -5,14 +5,26 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PubPlaza.Models;
+using PubPlaza.Data.Interfaces;
+using PubPlaza.ViewModel;
 
 namespace PubPlaza.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IDrinkRepository _drinkRepository;
+
+        public HomeController(IDrinkRepository drinkRepository)
+        {
+            _drinkRepository = drinkRepository;
+        }
         public IActionResult Index()
         {
-            return View();
+            HomeViewModel HVM = new HomeViewModel
+            {
+                PrefferedDrinks = _drinkRepository.PrefferedDrinks
+            };
+            return View(HVM);
         }
 
         public IActionResult About()

@@ -28,7 +28,8 @@ namespace PubPlaza.Data.Models
             session.SetString("CartId", cartId);
             return new ShoppingCart(context) { ShoppingCartId = cartId };
         }
-        public void AddCart(Drink drink, int amount)
+
+        public void AddToCart(Drink drink, int amount)
         {
             var shoppingCartItem = _pubPlazaContext.ShoppingCartItems.
                 SingleOrDefault(s => s.Drink.DrinkId == drink.DrinkId && s.ShoppingCartId == ShoppingCartId);
@@ -48,6 +49,7 @@ namespace PubPlaza.Data.Models
             }
             _pubPlazaContext.SaveChanges();
         }
+
         public int RemoveFromCart(Drink drink)
         {
             var shoppingCartItem = _pubPlazaContext.ShoppingCartItems.
@@ -69,17 +71,20 @@ namespace PubPlaza.Data.Models
             _pubPlazaContext.SaveChanges();
             return localAmount;
         }
+
         public List<ShoppingCartItem> GetShoppingCartItems()
         {
             return ShoppingCartItems ?? (ShoppingCartItems  = _pubPlazaContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
                 .Include(d => d.Drink).ToList());
         }
+
         public void ClearCart()
         {
             var CartItems = _pubPlazaContext.ShoppingCartItems.Where(cart => cart.ShoppingCartId == ShoppingCartId);
             _pubPlazaContext.ShoppingCartItems.RemoveRange(CartItems);
             _pubPlazaContext.SaveChanges();
         }
+
         public decimal GetShoppingCartTotal()
         {
                 var Total = _pubPlazaContext.ShoppingCartItems.Where(s => s.ShoppingCartId == ShoppingCartId)

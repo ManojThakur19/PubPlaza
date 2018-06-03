@@ -35,7 +35,7 @@ namespace PubPlaza.Controllers
             var SelectedDrink = _drinkRepository.AllDrinks.FirstOrDefault(d => d.DrinkId == drinkId);
             if(SelectedDrink !=null)
             {
-                _shoppingCart.AddCart(SelectedDrink, 1);
+                _shoppingCart.AddToCart(SelectedDrink, 1);
             }
             return RedirectToAction("Index");
         }

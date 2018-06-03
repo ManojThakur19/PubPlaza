@@ -66,6 +66,7 @@ namespace PubPlaza
                     template: "{controller=Home}/{action=Index}/{id?}");
 
             });
+
         }
     }
 }
