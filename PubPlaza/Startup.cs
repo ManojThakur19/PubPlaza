@@ -61,6 +61,7 @@ namespace PubPlaza
             //Below is doing exactly what it is by above commented code
             app.UseMvc(routes =>
             {
+                routes.MapRoute(name: "CategoryFilter", template: "Drink/{action}/{Category?}", defaults: new { Controller = "Drink", action = "Index" });
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");

@@ -7,6 +7,7 @@ using PubPlaza.Data.Interfaces;
 using PubPlaza.ViewModel;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using PubPlaza.Data.Models;
 
 namespace PubPlaza.Controllers
 {
@@ -22,15 +23,35 @@ namespace PubPlaza.Controllers
             _drinkRepository = drinkRepository;
             _env = env;
         }
-        public IActionResult Index()
+        public IActionResult Index(string Category)
         {
             //To get the Image file path
             //var path = _env.WebRootFileProvider.GetFileInfo("images/")?.PhysicalPath;
             //string path1 = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\images"}";
-
-            DrinkListViewModel drinkListViewModel = new DrinkListViewModel();
-            drinkListViewModel.Drinks = _drinkRepository.AllDrinks;
-            drinkListViewModel.CurrentCategory = "Current Category";
+            string _Category = Category;
+            IEnumerable<Drink> drinks;
+            string CurrentCategory = string.Empty;
+            if(string.IsNullOrEmpty(Category))
+            {
+                drinks = _drinkRepository.AllDrinks.OrderBy(d => d.DrinkId);
+            }
+            else
+            {
+                if(string.Equals("Alcoholic",_Category,StringComparison.OrdinalIgnoreCase))
+                {
+                    drinks = _drinkRepository.AllDrinks.Where(p => p.Category.CategoryName.Equals("Alcoholic")).OrderBy(c => c.Category.CategoryName);
+                }
+                else
+                {
+                    drinks = _drinkRepository.AllDrinks.Where(p => p.Category.CategoryName.Equals("Non-Alcoholic")).OrderBy(c => c.Category.CategoryName);
+                }
+                CurrentCategory = _Category;
+            }
+            DrinkListViewModel drinkListViewModel = new DrinkListViewModel
+            {
+                Drinks = drinks,
+                CurrentCategory = CurrentCategory
+            };
             return View(drinkListViewModel);
         }
     }
