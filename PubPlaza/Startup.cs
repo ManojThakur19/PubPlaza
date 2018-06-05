@@ -33,6 +33,7 @@ namespace PubPlaza
                 (Configuration.GetConnectionString("PubPlazaConnection")));
             services.AddTransient<ICategoryRepository, CategoryRepository>();   
             services.AddTransient<IDrinkRepository, DrinkRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             //two people  can ask for the instance at the same time will get difffernt instances
