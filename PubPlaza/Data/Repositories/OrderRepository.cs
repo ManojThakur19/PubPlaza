@@ -30,7 +30,7 @@ namespace PubPlaza.Data.Repositories
                     {
                         DrinkId = item.Drink.DrinkId,
                         Price = (int)item.Drink.Price,
-
+                        Amount = item.Amount,
                         OrderId = order.OrderId
                     };
                     _pubplazacontext.OrderDetails.Add(orderDetail);

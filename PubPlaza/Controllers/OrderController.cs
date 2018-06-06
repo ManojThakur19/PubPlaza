@@ -35,9 +35,9 @@ namespace PubPlaza.Controllers
             {
                 _orderRepository.CreateOrder(order);
                 _shoppingcart.ClearCart();
-                return RedirectToAction("CheckoutComplete");
+                
             }
-            return View(order);
+            return RedirectToAction("CheckoutComplete", "Order");
         }
         public IActionResult CheckoutComplete()
         {

@@ -43,7 +43,7 @@ namespace PubPlaza.Controllers
                 }
                 else
                 {
-                    drinks = _drinkRepository.AllDrinks.Where(p => p.Category.CategoryName.Equals("Non-Alcoholic")).OrderBy(c => c.Category.CategoryName);
+                    drinks = _drinkRepository.AllDrinks.Where(p => p.Category.CategoryName.Equals("Non-alcoholic")).OrderBy(c => c.Category.CategoryName);
                 }
                 CurrentCategory = _Category;
             }
