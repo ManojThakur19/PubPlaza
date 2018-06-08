@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PubPlaza.Data.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PubPlaza.Data
 {
-    public class PubPlazaContext :DbContext
+    public class PubPlazaContext :IdentityDbContext<IdentityUser>
     {
         public PubPlazaContext(DbContextOptions<PubPlazaContext> options) :base(options)
         {

@@ -13,6 +13,7 @@ using PubPlaza.Data;
 using PubPlaza.Data.Repositories;
 using Microsoft.AspNetCore.Http;
 using PubPlaza.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace PubPlaza
 {
@@ -31,6 +32,7 @@ namespace PubPlaza
             services.AddDbContext<PubPlazaContext>
                 (options => options.UseSqlServer
                 (Configuration.GetConnectionString("PubPlazaConnection")));
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<PubPlazaContext>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();   
             services.AddTransient<IDrinkRepository, DrinkRepository>();
             services.AddTransient<IOrderRepository, OrderRepository>();
@@ -58,6 +60,7 @@ namespace PubPlaza
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseSession();
+            app.UseAuthentication();
             //app.UseMvcWithDefaultRoute();
             //Below is doing exactly what it is by above commented code
             app.UseMvc(routes =>
