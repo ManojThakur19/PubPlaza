@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PubPlaza.Data.Models;
 using PubPlaza.Data.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PubPlaza.Controllers
 {
@@ -18,11 +19,13 @@ namespace PubPlaza.Controllers
             _orderRepository = orderRepository;
             _shoppingcart = shoppingcart;
         }
+        [Authorize]
         public IActionResult Checkout()
         {
             return View();
         }
         [HttpPost]
+        [Authorize]
         public IActionResult Checkout(Order order)
         {
             var items = _shoppingcart.GetShoppingCartItems();

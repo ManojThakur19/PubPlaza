@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using PubPlaza.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PubPlaza.Controllers
 {
@@ -79,6 +80,7 @@ namespace PubPlaza.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize]
         public async  Task<IActionResult> LogOut()
         {
             //SignOut from the application
